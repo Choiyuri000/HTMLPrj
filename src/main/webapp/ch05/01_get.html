@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 80px;
+            background-color: rgb(241, 162, 65);
+        }
+    </style>
+</head>
+
+<body>
+    <form action="get.jsp" method="get">
+        <!-- get => post -->
+        <div>
+            <label for="user_id">아이디</label><br>
+            <input type="text" name="user_id" id="user_id">
+        </div>
+        <div>
+            <label for="user_pw">비밀번호</label><br>
+            <input type="password" name="user_pw" id="user_pw">
+        </div>
+        <div>
+            <label for="user_name">회원이름</label><br>
+            <input type="text" name="user_name" id="user_name">
+        </div>
+        <div>
+            <label for="chk">가입유무</label>
+            <input type="date" name="" id="">
+        </div>
+        <div>
+            <label for=""></label>
+            <select name="language" id="">
+                <option value="Java">자바</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+            </select>
+        </div>
+        <input type="submit" value="회원가입">
+    </form>
+</body>
+
+</html>

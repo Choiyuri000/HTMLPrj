@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>InputType Example</title>
+</head>
+<body>
+	<form action="">
+		<h3>현재관심을 가지고 있는 학습 주제는 무엇입니까?</h3>
+		<fieldset>
+		<input type="checkbox" name="subject" value="HTML5">HTML5 <br>
+		<input type="checkbox" name="subject" value="CSS3">CSS3 <br>
+		<input type="checkbox" name="subject" value="Javascript">Javascript
+		<br> <input type="checkbox" name="subject" value="Jquery">Jquery
+		</fieldset>
+		<p></p>
+		<input type="submit" value="제출"> <input type="reset"
+			value="다시작성">
+	</form>
+	<br></br>
+	<h3>관심있는 학습주제 모두 선택</h3>
+	<form action="">
+		<select name="subject" size="4" multiple>
+			<option value="1" selected>HTML5</option>
+			<option value="2" selected>CSS3</option>
+			<option value="3" selected>Javascript</option>
+			<option value="4" selected>Jquery</option>
+
+		</select>
+		<p></p>
+		<input type="submit" value="제출"> <input type="reset"
+			value="다시작성">
+	</form>
+	<br></br>
+	<h3>그룹별 선택 항목을 제공합니다.</h3>
+	<form action="">
+		<label>전공분야를 선택</label> <select name="major">
+			<optgroup label="computer">
+				<option>Sofrware</option>
+				<option>Robot</option>
+				<option>System</option>
+			</optgroup>
+			<optgroup label="language">
+				<option selected>Korea</option>
+				<option>English</option>
+				<option>China</option>
+				<option>Germany</option>
+			</optgroup>
+			<optgroup label="business">
+				<option>Service</option>
+				<option>Education</option>
+				<option>Communication</option>
+				<option>Marketing</option>
+			</optgroup>
+		</select>
+		<p></p>
+		<input type="submit" value="선택"> <input type="reset"
+			value="다시선택">
+	</form>
+</body>
+</html>
