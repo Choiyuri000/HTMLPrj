@@ -5,69 +5,78 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1">
-		<caption>회원가입</caption>
-		<tr>
-			<td>아이디</td>
-			<td><input type="text" name="id"><input type="submit"
-				value="중복확인"></td>
-		</tr>
-		<tr>
-			<td rowspan="2">비밀번호</td>
-		</tr>
-		<tr></tr>
-			<td><input type="text" name="pw" placeholder="비밀번호 재확인"></td>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td rowspan="3">주소</td>
-			<td ><input type="text" name="address">-<input type="text" name="address"></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td><input type="text" id="user_id" name="user_id">
-				<select>
-					<option value="1" selected>naver.com</option>
-					<option value="2">gmail.com</option>
-					<option value="3">daum.net</option>
-			</select></td>
+	<fieldset>
+		<table border="1">
+			<caption>회원가입</caption>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="id"><input type="submit"
+					value="중복확인"></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="text" name="pw"><br> <input
+					type="text" name="pw_check" placeholder="비밀번호 재확인"></td>
+			</tr>
+			<tr>
+				<td>전화번호</td>
+				<td><input type="text" name="phone_num">- <input
+					type="text" name="phone_num">- <input type="text"
+					name="phone_num"></td>
+			</tr>
+			<tr>
+				<td>휴대전화</td>
+				<td><input type="text" name="cellPhone_num">- <input
+					type="text" name="cellPhone_num">- <input type="text"
+					name="cellPhone_num"></td>
+			</tr>
+			<tr>
+				<td rowspan="3">주소</td>
+				<td><input type="text" name="address">-<input
+					type="text" name="address"><br> <input type="text"
+					name="address_detail1"><br> <input type="text"
+					name="address_detail1"></td>
+
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td><input type="text" id="user_id" name="user_id"> <select>
+						<option value="1" selected>@naver.com</option>
+						<option value="2">@gmail.com</option>
+						<option value="3">@daum.net</option>
+				</select></td>
 
 
-		</tr>
-		<tr>
-			<td rowspan="2">생년월일</td>
-			<td><input type="radio" name="birth" value="day" checked>양
-				<input type="radio" name="birth" value="even">음</td>
+			</tr>
+			<tr>
+				<td rowspan="2">생년월일</td>
+				<td><input type="radio" name="birth" value="day" checked>양
+					<input type="radio" name="birth" value="even">음</td>
 
 
-		</tr>
-		<tr>
-			<td><select name="birth">
-					<option value="year">
-					<option value="month">
-					<option value="day">
-			</select></td>
-		</tr>
-	</table>
-	<form>
-		<input type="checkbox" name="check" value="check">이메일 수신 동의 <br>
-		<input type="checkbox" name="check" value="check">SMS 수신 동의 <br>
-	</form>
+			</tr>
+			<tr>
+				<td><select name="date" input type="year" name="year">
+
+				</select> <select name="date">
+				</select> <select name="date">
+
+				</select></td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<form>
+			<input type="checkbox" name="check" value="check">이메일 수신 동의 <br>
+			<input type="checkbox" name="check" value="check">SMS 수신 동의 <br>
+			<input type="reset" value="가입취소"> <input type="submit"
+				value="회원가입">
+		</form>
+	</fieldset>
 </body>
 </html>
