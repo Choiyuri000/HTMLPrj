@@ -1,0 +1,21 @@
+p {
+    color: blue;
+}
+
+h2 {
+    background-color: aqua;
+}
+
+h2#show {
+    color: green;
+}
+
+.show {
+    font-size: 20px;
+}
+
+input[type='submit'] {
+    /* 속성선택자 */
+    width: 100px;
+}
+

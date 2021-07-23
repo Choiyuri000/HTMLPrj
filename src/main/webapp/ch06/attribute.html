@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch06/attrubute.html</title>
+    <style>
+        p[text*='google'] {
+            font-size: 19px;
+            background-color: greenyellow;
+            /* 처음이랑 끝 */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <p text='hello'>텍스트1</p>
+    <p text='red'>텍스트2</p>
+    <p text='http://daum.net'>텍스트3</p>
+    <p text='https://naver.com'>텍스트4</p>
+    <!-- ㄴ공백이 포함되어있어야 ~ 가능 -->
+    <p text='https://google.com'>텍스트5</p>
+    <p text='img/pic.png'>텍스트6</p>
+    <p text='Seoul'>텍스트7</p>
+</body>
+
+</html>

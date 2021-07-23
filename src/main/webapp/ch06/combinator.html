@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch06/combinator.html</title>
+    <style>
+        li {
+            background-color:darkkhaki !important;
+        }
+        div>h2.favorite {
+            color: crimson;
+        }
+        div li:nth-of-type(1) {
+            background-color: yellow;
+        }
+        h2 ~h3 {
+            border: 1px dotted black;
+        }
+        h2+h3 {
+            color: blueviolet;
+        }
+        h2, h3, ul, li{
+            background-color:darkgray;
+        }
+        ul [choice=best] {
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2 class="favorite">Apple</h2>
+        <h2>Peach</h2>
+        <h3>Banana</h3>
+        <ul choice="best">
+            <li>Cherry</li>
+            <li>Mango</li>
+        </ul>
+        <h3>Orange</h3>
+    </div>
+    <h2 class="favorite">Melon</h2>
+</body>
+
+</html>

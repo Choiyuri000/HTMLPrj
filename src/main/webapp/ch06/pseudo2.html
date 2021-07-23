@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch06/pseudo2.html</title>
+    <style>
+        h4:nth-child(2) {
+            background-color: chartreuse;
+        }
+        h4:nth-of-type(3){
+            background-color: chocolate;
+        }
+        h4:nth-last-of-type(1){
+            background-color: cornflowerblue;
+        }
+        h4:nth-last-child(2){
+        	background-color: blue;
+        }
+        p:only-child {
+            background-color: darkkhaki;
+        }
+        p:only-of-type {
+            background-color: darkmagenta;
+        }
+        div:empty {
+            width: 50px;
+            height: 30px;
+            background-color: darkslategrey;
+            /* 텍스트가 있으면 자식태그로 취급 */
+        }
+        tr:nth-of-type(2n){
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <p>웹프로그래밍</p>
+    <h4>웹프로그래밍-1</h4>
+    <p>웹프로그래밍.</p>
+    <h4>웹프로그래밍-2</h4>
+    <h4>웹프로그래밍-3</h4>
+    <h4>웹프로그래밍-4</h4>
+    <h4>웹프로그래밍-5</h4>
+    <h4>웹프로그래밍-6</h4>
+    <h4>웹프로그래밍-7</h4>
+    <h4>웹프로그래밍-8</h4>
+    <h4>웹프로그래밍-9</h4>
+    <p>웹프로그래밍</p>
+    <h4>웹프로그래밍-10</h4>
+    <h4>웹프로그래밍-11</h4>
+    
+    <div>
+        <p>소프트웨어</p>
+        <span>소프트웨어2</span>
+    </div>
+    <div></div>
+</body>
+
+</html>

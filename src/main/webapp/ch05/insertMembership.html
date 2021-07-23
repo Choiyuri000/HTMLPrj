@@ -1,82 +1,91 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+	fieldset {
+		display: inline-block;
+	}
+
+	input[type='text'] {
+		width: 100px;
+	}
+
+	input[type='address'] {
+		width: 200px;
+	}
+
+	input[type='reset'] {
+		width: 100px;
+	}
+
+	input[type='submit'] {
+		width: 100px;
+	}
+</style>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>회원가입</title>
 </head>
+
 <body>
 	<fieldset>
 		<table border="1">
 			<caption>회원가입</caption>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="id"><input type="submit"
-					value="중복확인"></td>
+				<td><input type="text" name="id"><input type="submit" value="중복확인"></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="text" name="pw"><br> <input
-					type="text" name="pw_check" placeholder="비밀번호 재확인"></td>
+				<td><input type="text" name="pw"><br> <input type="text" name="pw_check" placeholder="비밀번호 재확인"></td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="phone_num">- <input
-					type="text" name="phone_num">- <input type="text"
-					name="phone_num"></td>
+				<td><input type="text" name="phone_num">- <input type="text" name="phone_num">- <input type="text"
+						name="phone_num"></td>
 			</tr>
 			<tr>
 				<td>휴대전화</td>
-				<td><input type="text" name="cellPhone_num">- <input
-					type="text" name="cellPhone_num">- <input type="text"
-					name="cellPhone_num"></td>
+				<td><input type="text" name="cellPhone_num">- <input type="text" name="cellPhone_num">- <input
+						type="text" name="cellPhone_num"></td>
 			</tr>
 			<tr>
-				<td rowspan="3">주소</td>
-				<td><input type="text" name="address">-<input
-					type="text" name="address"><br> <input type="text"
-					name="address_detail1"><br> <input type="text"
-					name="address_detail1"></td>
+				<td>주소</td>
+				<td><input type="text" name="address">-<input type="text" name="address"><input type="submit"
+						value="우편주소"><br> <input type="address" name="address_detail1"><br> <input type="address"
+						name="address_detail1"></td>
 
-			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" id="user_id" name="user_id"> <select>
+				<td><input type="text" id="user_id" name="user_id"><select>
 						<option value="1" selected>@naver.com</option>
 						<option value="2">@gmail.com</option>
 						<option value="3">@daum.net</option>
-				</select></td>
-
-
+					</select></td>
 			</tr>
 			<tr>
 				<td rowspan="2">생년월일</td>
 				<td><input type="radio" name="birth" value="day" checked>양
 					<input type="radio" name="birth" value="even">음</td>
-
-
 			</tr>
 			<tr>
-				<td><select name="date" input type="year" name="year">
-
-				</select> <select name="date">
-				</select> <select name="date">
-
-				</select></td>
+			<td colspan="3">
+			
+			</td>
 			</tr>
-		</table>
+			<td colspan="3">
+				<form>
+					<input type="checkbox" name="check" value="check">이메일 수신 동의 <br>
+					<input type="checkbox" name="check" value="check">SMS 수신 동의 <br>
+					<input type="reset" value="가입취소"> <input type="submit" value="회원가입">
+				</form>
+			</td>
+
 	</fieldset>
-	<fieldset>
-		<form>
-			<input type="checkbox" name="check" value="check">이메일 수신 동의 <br>
-			<input type="checkbox" name="check" value="check">SMS 수신 동의 <br>
-			<input type="reset" value="가입취소"> <input type="submit"
-				value="회원가입">
-		</form>
-	</fieldset>
+	</table>
+
 </body>
+
 </html>
