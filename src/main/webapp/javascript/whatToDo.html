@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/whatToDo.html</title>
+</head>
+
+<body>
+    <img src="https://www.w3schools.com/js/pic_bulboff.gif" alt>
+    <button onclick='turnOn()'>TurnOn</button>
+    <button onclick='turnOff()'>TurnOff</button>
+    <!-- botton 버튼 생성 -->
+    <script>
+        function turnOn() {
+            let img = document.getElementsByTagName('img')[0];
+            // 변수 선언해서 어떤 타입이든지 가능
+            img.src = "https://www.w3schools.com/js/pic_bulbon.gif";
+        }
+
+        function turnOff() {
+            let img = document.getElementsByTagName('img')[0];
+            img.src = "https://www.w3schools.com/js/pic_bulboff.gif";
+        }
+    </script>
+</body>
+
+</html>

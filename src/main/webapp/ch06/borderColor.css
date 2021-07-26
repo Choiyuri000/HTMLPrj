@@ -6,19 +6,20 @@ body {font-weight: bold; font-size: 12pt; font-family: consols;}
     border-color: green;
 }
 .bt2 {
-    background-color: aquamarine;
-    margin-bottom: ; padding-left: ;
-    border-style: ; border-width: ;
-    border-color: ;
+    background-color: aquamarine; color: tomato;
+    margin: 20px ; padding: 5px 10px;
+    border-style: solid; border-width: 1px 3px 5px 3px ;
+    border-color: blue darkcyan goldenrod thistle;
 }
 .bt3 {
     background-color: antiquewhite;
-    margin-bottom: ; padding-left: ;
-    border-style: ; border-width: ;
-    border-color: ;
+    margin:50px 15px 20px ;
+    padding: 20px;
+    border-style: dashed double; border-width:5px 0px ;
+    border-color:red ;
 }
 .bt4 {
-    border-top: ;
-    border-bottom: ;
+    border-top: 5px solid firebrick;
+    border-bottom: 5px solid slategrey;
 
 }

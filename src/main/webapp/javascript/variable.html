@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>variable.html</title>
+    <script src="js/variable3.js"></script>
+    <script>
+        // var num1, num2;
+        let num1 = 10;
+        console.log('global:' + num1);
+
+        function tempFnc() {
+            let num1 = 20;
+            let num2 = 30;
+            console.log('local: ' + num1 + ',' + num2);
+        }
+        tempFnc();
+        console.log('global:' + num1 + ',' + num2);
+    </script>
+</head>
+
+<body>
+
+
+</body>
+
+</html>
