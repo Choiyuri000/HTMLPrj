@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/event.html</title>
+</head>
+
+<body>
+    <form name='frm' action="aaa.html" onsubmit="return submitFunc(event)">
+        이름: <input type="text" name="name" id="name"><br>
+        나이: <input type="text" name="age" id="age"><br>
+        전화번호: <input type="text" name="phone" id="phone"><br>
+        <input type="submit" value="저장">
+    </form>
+
+    <ul id="memberList">
+
+    </ul>
+
+    <script>
+        function submitFunc(e) {
+            e.preventDefault(); // submit 기본기능차단
+            if (document.frm.name.value == '') {
+                alert('이름 입력');
+                document.frm.name.focus();
+                return; //function 종료
+            }
+            if (document.frm.age.value == '') {
+                alert('나이 입력');
+                document.frm.age.focus();
+                return; //function 종료
+            }
+            if (document.frm.phone.value == '') {
+                alert('전화번호 입력');
+                document.frm.phone.focus();
+                return; //function 종료
+            }
+            let name = document.frm.name.value;
+            let age = document.frm.age.value;
+            let phone = document.frm.phone.value;
+            let uList = document.getElementById('memberList');
+            // 0, null, '' => false
+            // 1, 'val' => true
+            if (uList.childNodes.length) {
+                uList.insertBefore(createList(name, age, phone), uList.firstChild);
+            } else {
+                uList.appendChild(createList(name, age, phone));
+            }
+           
+                document.frm.name.value = ''; // 사용자 입력 후 입력값 지움
+                document.frm.age.value = ''; 
+                document.frm.phone.value = '';
+                document.frm.name.focus(); // 첫번째 입력값의 위치에 조정
+                // console.log('dd');
+                // return false;
+            }
+
+            function createList(arg1, arg2, arg3) {
+                // <li>name1 - age</li>
+                let liTag = document.createElement('li');
+                let text = document.createTextNode(arg1 + ' , ' + arg2 + ' , ' + arg3);
+                liTag.appendChild(text);
+
+                return liTag;
+            }
+    </script>
+</body>
+
+</html>

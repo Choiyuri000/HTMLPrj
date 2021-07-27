@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title></title>
+    <meta name="generator" content="editplus" />
+    <meta name="author" content="김종현" />
+    <style type="text/css">
+        /*디자인은 큰틀부터 디자인하자.*/
+        #list {
+            width: 500px;
+            border: 1px solid orange;
+            /*겉테두리와 안테두리를 하나로 합쳐준다. */
+            border-collapse: collapse;
+        }
+
+        /* 누구 자식인지 반드시 명시해 준다.*/
+        #list td,
+        #list th {
+            font-size: 12px;
+            border: 1px solid olivedrab;
+            padding: 3px;
+        }
+
+        #list th {
+            background-color: #cc99cc;
+        }
+
+        #list .td1 {
+            width: 3px;
+            text-align: center;
+        }
+
+        #list .td2 {
+            width: 150px;
+            text-align: center;
+        }
+
+        #list .td3 {
+            width: 50px;
+            text-align: center;
+        }
+
+        #list .td4 {
+            width: 50px;
+            text-align: center;
+        }
+
+        #list .td5 {
+            width: 5px;
+            text-align: center;
+        }
+
+        /*부모 자식 관계 */
+        #list .altRow {
+            background-color: #e0f0b5;
+        }
+    </style>
+
+<!-- 짝수 홀수 구분 altRow 적용 => 등록에 event -->
+    <script> 
+        function createTr(num, title, writer, regDate) {
+            let trTag = document.createElement('tr');
+            trTag.setAttribute('class', 'altRow');
+
+            let tdTag = document.createElement('td');
+            let numText = document.createTextNode(num);
+            trTag.appendChild(trTag);
+
+            return trTag;
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Ex21_board.htm -->
+
+    <form action="">
+        번호: <input type="number" name="" id=""><br>
+        제목: <input type="text" name="" id=""><br>
+        이름: <input type="text" name="" id=""><br>
+        날짜: <input type="date" name="" id=""><br>
+        <input type="submit" value="등록">
+
+    </form>
+    <h3>게시판 리스트</h3>
+    
+    <table id="list">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>이름</th>
+            <th>날짜</th>
+
+        </tr>
+        <tr>
+            <td class="td1">55</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+        </tr>
+        <tr class="altRow">
+            <td class="td1">56</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+
+        </tr>
+
+        <tr>
+            <td class="td1">5</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+        </tr>
+        <tr class="altRow">
+            <td class="td1">5</td>
+            <td class="td2">게시판 만들기 연습입니다.</td>
+            <td class="td3">홍길동</td>
+            <td class="td4">2012년 1월 5일</td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>

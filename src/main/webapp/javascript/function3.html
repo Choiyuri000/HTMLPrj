@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/function3.html</title>
+</head>
+
+<body>
+    <p class="cls">내용1</p>
+    <p>내용2</p>
+    <p>내용3</p>
+    <p>내용4</p>
+    <p>내용5</p>
+
+    <script>
+        let bodies = document.getElementsByTagName('body');
+        console.log(bodies[0].children[0].innerHTML);
+        console.log(bodies[0].childNodes[1].innerHTML);
+        console.log(window);
+
+        let pTag = document.getElementsByTagName('p'); // HTMLCollection
+        pTag = document.querySelectorAll('p'); // NodeList
+
+        console.log(pTag);
+        for (let i = 0; i < pTag.length; i++) {
+            pTag[i].onclick = function () {
+                pTag[i].onclick = clickFunc;
+                pTag[i].onmouseover = mover;
+                // pTag[i].onmouseout = mout;
+                pTag[i].addEventListener('mouseout', mout);
+                pTag[i].addEventListener('mouseout', mout2);
+                pTag[i].removeEventListener('mouseover', mout2);
+
+                
+            }
+        }
+        function mout2(){
+            console.log(this);
+        }
+
+        function mout() {
+            this.style.color = 'blue';
+        }
+
+        function mover() {
+            this.style.color = 'red';
+        }
+
+        function clickFunc() {
+            window.alert(this.innerHTML);
+            console.log(this.childNodes[0].nodeValue);
+            console.log(this.firstChild.nodeValue);
+        }
+    </script>
+</body>
+
+</html>

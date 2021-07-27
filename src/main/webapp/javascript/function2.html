@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/function2.html</title>
+</head>
+
+<body id="bdy">
+    <!-- <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Cherry</li>
+    </ul> -->
+    입력: <input type="text" id="inputVal" value="">
+    <button onclick="addFunc()">추가</button>
+
+    <script>
+        console.log(this);
+
+        const fruits = ['Apple', 'Banana', 'Cherry', 'Melon'];
+
+        function makeList() { // 기능만 정의 호출X
+            let bodyTag = document.getElementById('bdy'); // id 값으로 요소 선택
+            let ulTag = document.createElement('ul'); // ul 태그 생성
+
+            for (let i = 0; i < fruits.length; i++) {
+                // let appleTag = document.createElement('li'); // li 태그 생성
+                // let apple = document.createTextNode(fruits[i]); // 텍스트
+                // appleTag.appendChild(apple);
+                ulTag.appendChild(createList(fruits[i]));
+            }
+            bodyTag.appendChild(ulTag);
+        }
+
+
+        function createList(arg) {
+            // <li>Apple<button onclick='delFunc()'>Delete</button></li>
+            let liTag = document.createElement('li');
+            let text = document.createTextNode(arg);
+
+            let btn = document.createElement('button');
+            let delText = document.createTextNode('Delete');
+            btn.appendChild(delText);
+            btn.onclick = delFunc;
+
+
+            liTag.appendChild(text);
+            liTag.appendChild(btn);
+            liTag.onmouseover = changeCol;
+            
+            // liTag.onmouseout = function () {
+            //     this.style.backgroundolor = 'null';
+            // };
+            return liTag;
+        }
+
+        function backCol(){
+            this.style.backgroundColor= null;
+        }
+        function changeCol(){
+            this.style.backgroundColor= "yellow";
+        }
+
+        // 사용자 입력값을 사용해서 ul 하위에 자식으로 append
+        function addFunc() {
+            let userInput = document.getElementById('inputVal').value;
+            console.log(userInput);
+            let li = createList(userInput); // <li>사용자입력<button></button></li>
+
+            let ulTag = document.getElementsByTagName('ul');
+            console.log(ulTag[0]);
+            ulTag[0].appendChild(li);
+        }
+        makeList();
+
+        function delFunc() {
+            console.log(this); //이벤트 => this는 이벤트발생 element
+            this.parentNode.remove();
+        }
+    </script>
+</body>
+
+</html>
