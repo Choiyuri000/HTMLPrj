@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직원정보</title>
+    <script>
+        let jsonData = `[{"id":1,"first_name":"Dorian","last_name":"Strutt","email":"dstrutt0@etsy.com","gender":"Genderfluid"},
+{"id":2,"first_name":"Isacco","last_name":"Noods","email":"inoods1@deviantart.com","gender":"Polygender"},
+{"id":3,"first_name":"Goldi","last_name":"Souch","email":"gsouch2@businesswire.com","gender":"Female"},
+{"id":4,"first_name":"Alistair","last_name":"O'Shavlan","email":"aoshavlan3@youtube.com","gender":"Male"},
+{"id":5,"first_name":"Cristin","last_name":"Dargue","email":"cdargue4@washington.edu","gender":"Female"},
+{"id":6,"first_name":"Arty","last_name":"Downing","email":"adowning5@blogspot.com","gender":"Genderfluid"},
+{"id":7,"first_name":"Breanne","last_name":"Ritchie","email":"britchie6@macromedia.com","gender":"Female"},
+{"id":8,"first_name":"Ragnar","last_name":"Cuvley","email":"rcuvley7@prweb.com","gender":"Bigender"},
+{"id":9,"first_name":"Vina","last_name":"Kay","email":"vkay8@xinhuanet.com","gender":"Agender"},
+{"id":10,"first_name":"Wesley","last_name":"Daouze","email":"wdaouze9@hubpages.com","gender":"Female"}]`
+        console.log(jsonData);
+        let objData = JSON.parse(jsonData);
+        console.log(objData);
+        let ul = document.createElement('ul');
+        console.log(ul);
+        for (let i = 0; i < objData.length; i++) {
+            console.log(objData[i].last_name);
+            let li = document.createElement('li');
+            li.onclick = function () {
+                window.alert(this.innerHTML);
+            };
+            li.addEventListener('mouseover', function () {
+                this.style.backgroundColor = 'blue';
+                this.style.color = 'darkgray';
+            });
+            let text = document.createTextNode(objData[i].last_name);
+            li.appendChild(text);
+            ul.appendChild(li);
+
+        };
+        // console.log('1');
+        document.addEventListener('DOMContentLoaded', function () {
+            let tbody = document.querySelector('#list>tbody');
+            // console.log('2');
+        });
+
+        // console.log('3');
+
+
+
+        let trTag = document.createElement('tr');
+        let numText = document.createElement('num');
+        let tdTag = document.createElement('td');
+        trTag.appendChild(tdTag);
+    </script>
+</head>
+
+<body>
+    <div id="show">
+        
+        <table id='list'>
+            <thead>
+                <tr>
+                    <td class="1">사원번호</td>
+                    <td class="2 ">성</td>
+                    <td class="3">이름</td>
+                    <td class="4">이메일</td>
+                    <td class="5">성별</td>
+                    <td class="6">기능</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
