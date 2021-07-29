@@ -47,12 +47,13 @@ function submitFnc(e) {
 function createTr(num, title, writer, regDate) {
     let trTag = document.createElement('tr');
     trTag.setAttribute('id', num);
+   
     for (let i = 0; i < arguments.length; i++) {
         let tdTag = document.createElement('td');
         tdTag.setAttribute('class', 'td' + (i + 1));
-        let text = document.createTextNode(arguments);
+        let num = document.createTextNode(arguments);
 
-        tdTag.appendChild(text);
+        tdTag.appendChild(num);
         trTag.appendChild(tdTag);
 
 

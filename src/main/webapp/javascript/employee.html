@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>직원정보</title>
+    <script src="employee.js"></script>
     <script>
         let jsonData = `[{"id":1,"first_name":"Dorian","last_name":"Strutt","email":"dstrutt0@etsy.com","gender":"Genderfluid"},
 {"id":2,"first_name":"Isacco","last_name":"Noods","email":"inoods1@deviantart.com","gender":"Polygender"},
@@ -17,46 +18,36 @@
 {"id":8,"first_name":"Ragnar","last_name":"Cuvley","email":"rcuvley7@prweb.com","gender":"Bigender"},
 {"id":9,"first_name":"Vina","last_name":"Kay","email":"vkay8@xinhuanet.com","gender":"Agender"},
 {"id":10,"first_name":"Wesley","last_name":"Daouze","email":"wdaouze9@hubpages.com","gender":"Female"}]`
-        console.log(jsonData);
-        let objData = JSON.parse(jsonData);
+
+        console.log(jsonData); // json 데이터
+        let objData = JSON.parse(jsonData); // json => object 변환
         console.log(objData);
         let ul = document.createElement('ul');
         console.log(ul);
-        for (let i = 0; i < objData.length; i++) {
-            console.log(objData[i].last_name);
-            let li = document.createElement('li');
-            li.onclick = function () {
-                window.alert(this.innerHTML);
-            };
-            li.addEventListener('mouseover', function () {
-                this.style.backgroundColor = 'blue';
-                this.style.color = 'darkgray';
-            });
-            let text = document.createTextNode(objData[i].last_name);
-            li.appendChild(text);
-            ul.appendChild(li);
 
-        };
+
+
         // console.log('1');
         document.addEventListener('DOMContentLoaded', function () {
             let tbody = document.querySelector('#list>tbody');
-            // console.log('2');
+
+            for (let i = 0; i < objData.length; i++) {
+                let newTr = makeRow(objData[i]);
+                tbody.appendChild(newTr);
+            }
+            
+            document.getElementById('list').setAttribute('border','1');
         });
 
-        // console.log('3');
 
 
-
-        let trTag = document.createElement('tr');
-        let numText = document.createElement('num');
-        let tdTag = document.createElement('td');
-        trTag.appendChild(tdTag);
+        
     </script>
 </head>
 
 <body>
     <div id="show">
-        
+
         <table id='list'>
             <thead>
                 <tr>
