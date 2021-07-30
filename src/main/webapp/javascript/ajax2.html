@@ -1,23 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript/ajax.html</title>
+    <style>
+        form {
+            border: solid 1px black;
+            padding: 5px;
+            width: 250px;
+
+
+        }
+    </style>
     <script>
-        function list(sel){
+        let loadJson = new XMLHttpRequest();
+        loadJson.open('GET','javascript/MOCK_DATA (1).json');
+        loadJson.send();
+        loadJson.onload() = function() {
             
-            let xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function(){
-                const myObj = JSON.parse(xmlhttp.responseText);
-                
-            }
-           
         }
     </script>
 </head>
+
 <body>
-    
+    <form action="" id="form">
+        <caption>회원 정보 시스템</caption><br>
+        ID : <input type="text"><br>
+        이름 : <input type="text"><br>
+        E-mail: <input type="text"><br>
+        성별: <input type="text"><br>
+        <input type="submit" id="submit" value="등록">
+        <input type="reset" id="reset" value="수정">
+    </form>
+    <p></p>
+    <caption>회원 목록</caption>
+    <div>
+        <strong>
+            <span>ID</span>
+            <span>이름</span>
+            <span>E-mail</span>
+            <span>성별</span>
+        </strong>
+    </div>
+    <div class="pageination">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>10</button>
+    </div>
+
 </body>
+
 </html>

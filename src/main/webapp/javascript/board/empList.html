@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borad/emplList.html</title>
+</head>
+
+<body>
+    <div id="container">
+        <form action="../../EmpListServlet.do" method="GET" onsubmit="submitFnc(event)">
+            <label for="uid">아이디:</label>
+            <input type="text" name="uid" id="uid"><br>
+            <label for="upw">비밀번호:</label>
+            <input type="password" name="upw" id="upw"><br>
+            <input type="submit" value="로그인">
+        </form>
+    </div>
+    <p></p>
+    <script>
+        let form = document.querySelector('#container > form');
+       // console.log(form);
+        //let check = document.getElementById("uid").innerHTML = "아이디: ";
+        //let check2 = document.getElementById("upw").innerHTML = "비밀번호: ";
+        //console.log(check);
+        //console.log(check2);
+        
+        form.addEventListener('submit',function(event){
+        	event.preventDefault();
+        	
+        	let url = this.getAttribute('action');
+        	
+        	let xhtp = new XMLHttpRequest();
+        	xhtp.open('get', url);
+        	xhtp.send();
+        	xhtp.onload = function(){
+        		console.log(xhtp.responseText);
+        		let data = JSON.parse(xhtp.responseText);
+        		console.log(data);
+        	}
+        })
+        
+     
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 #show>div:nth-last-of-type(2n) {
-    background-color: rgb(115, 175, 212);
+    background-color: mediumaquamarine;
 }
 
 .row {
@@ -13,21 +13,12 @@ span {
 }
 
 strong {
-    background-color: lightsalmon;
+    background-color: navajowhite;
     text-align: end;
     
 
 }
-span2 {
-    background-color: lightsalmon;
-    text-align: end;
-    
-}
 
-strong3 {
-    background-color: lightsalmon;
-    text-align: end;
-}
 .pageination button {
     color: black;
     float: left;
@@ -38,11 +29,11 @@ strong3 {
 
 }
 .pageination button.active {
-    background-color: #4CAF50;
+    background-color: darkgreen;
     color: white;
 }
 
-.pagination button:hover:not(.active) {
-    background-color: #ddd;
+.pageination button:hover:not(.active) {
+    background-color: forestgreen;
     
 }

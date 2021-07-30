@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript/array.html</title>
+    <script src="js/ary.js"></script>
+    <script>
+        const members = [{
+                id: 101,
+                first_name: 'Hong',
+                age: 25
+            },
+            {
+                id: 102,
+                first_name: 'Park',
+                age: 36
+            },
+            {
+                id: 103,
+                first_name: 'Kim',
+                age: 57
+            },
+        ];
+        document.addEventListener('DOMContentLoaded', function () {
+            let ul = document.createElement('ul');
+            document.getElementsByTagName('body')[0].appendChild(ul);
+
+            members.filter(function (val, idx) {
+                    return val.age > 30;
+                })
+                .forEach(function (val, idx) {
+                    console.log(`name: ${val.first_name}, age: ${val.age}`);
+                    // document.write(`name: ${val.first_name}, age: ${val.age}<br>`);
+                    let li = document.createElement('li');
+                    li.innerHTML = val.first_name + ' - ' + val.age;
+                    ul.appendChild(li);
+                });
+        })
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
