@@ -1,7 +1,7 @@
 // <tr><td>id</td></tr><tr><td> first</td></tr><tr><td> last </td></tr>
 // 필드의 갯수만큼 반복 for in 반복문 사용
-function generate_table() {
-    let 
+//function generate_table() {
+  //  let 
     // let tbl = document.createElement("table");
     // let tblBody = document.createElement("tbody");
     // for (var i = 0; i < 2; i++) {
@@ -24,21 +24,21 @@ function generate_table() {
     //     body.appendChild(tbl);
 
 
-}
 
 
 
-function makeRow(obj) {
-    let tr = document.createElement('tr');
+
+//function makeRow(obj) {
+   // let tr = document.createElement('tr');
     // tr.addEventListener('mouseover',mover, capturing);
-    for (let field in obj) {
-
-        console.log(`필드 ${field}, 값: ${obj[field]}`);
-        let td = document.createElement('td');
-        td.appendChild(text);
-        tr.appendChild(td);
-    }
-}
+   // for (let field in obj) {
+///
+       // console.log(`필드 ${field}, 값: ${obj[field]}`);
+       // let td = document.createElement('td');
+       /// td.appendChild(text);
+        //tr.appendChild(td);
+   // }//
+//}//
 
 
 // let btn = document.createElement('input');
