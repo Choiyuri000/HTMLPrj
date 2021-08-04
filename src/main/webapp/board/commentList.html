@@ -34,12 +34,18 @@
 	function makeCommentView(comment) {
 		let div = document.createElement('div');
 		let id = comment.children[0].innerHTML;
+		let name = comment.children[1].innerHTML;
+		let content = comment.children[2].innerHTML;
 		div.setAttribute('id', id);
+		div.setAttribute('data-id', id);
+		div.setAttribute('data-name', name);
+		div.setAttribute('data-content', content);
 		let str = '<strong>' + comment.children[1].innerHTML + '</strong>'
 				+ comment.children[2].innerHTML
 				+ '<input type="button" value="수정" onclick="viewUpdateForm('
 				+ id + ')">'
-				+ '<input type="button" value="삭제" onclick="confirmDelete()">';
+				+ '<input type="button" value="삭제" onclick="confirmDelete('
+				+ id + ')">';
 		div.innerHTML = str;
 		return div;
 	}
@@ -85,10 +91,96 @@
 
 	}
 	// 수정버튼 클릭시
-	function viewUpdateView(id) {
+	function viewUpdateForm(id) {
 		let updateFormDiv = document.getElementById('commentUpdate');
 		let commentDiv = document.getElementById(id);
 		console.log(commentDiv);
+		updateForm.id.value = commentDiv.dataset.id;
+		updateForm.name.value = commentDiv.dataset.name;
+		updateForm.content.value = commentDiv.dataset.content;
+		updateFormDiv.style.display = 'block'; // 수정화면 속성
+		commentDiv.after(updateFormDiv);
+		document.getElementById('commentAdd').style.display = 'none'; // 등록 화면
+
+	}
+	// 변경 클릭시
+	function updateComment() {
+		let id = updateForm.id.value;
+		let name = updateForm.name.value;
+		let content = updateForm.content.value;
+		// 1.DB 변경 , 2. 화면변경
+
+		let url = '../CommentsServlet?cmd=update&id=' + id + '&name=' + name
+				+ '&content=' + content;
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', url);
+		xhtp.send();
+		xhtp.onload = updateResult;
+	}
+	// 댓글 수정 콜백 함수
+	function updateResult() {
+		console.log(this.responseXML);
+		let xmlDoc = this.responseXML;
+		let code = xmlDoc.getElementsByTagName('code')[0].innnerHTML;
+		if (code == 'success') {
+			let comment = xmlDoc.getElementsByTagName('data');
+			let commentDiv = makeCommentView(comment);
+			let id = commentDiv.getAttribute('id');
+			let oldDiv = document.getElementById(id);
+			console.log(id, oldDiv);
+			//replaceChild
+			let parent = document.getElenmentById('commentList');
+			parent.replaceChild(commentDiv, oldDiv);
+			//수정화면 숨기고 등록회면 보이도록
+			document.getElementById('commentUpdate').style.display = 'none';
+			document.getElementById('commentAdd').style.display = 'block';
+		} else if (code == 'error') {
+			alert('에러발생');
+		}
+		
+
+	}
+	// 취소버튼
+	function cancelUpdate() {
+		let id = updateForm.id.value;
+		let name = updateForm.name.value;
+		let content = updateForm.content.value;
+		// 1.DB 변경 , 2. 화면변경
+
+		let url = '../CommentsServlet?cmd=update&id=' + id + '&name=' + name
+				+ '&content=' + content;
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', url);
+		xhtp.send();
+		xhtp.onload = updateResult;
+	}
+	function cancelResult() {
+		
+	}
+	// 삭제버튼
+	function confirmDelete() {
+		let url = '../CommentsServlet?cmd=delete&id=' + id;
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get',url);
+		xhtp.send();
+		xhtp.onload = deleteResult;
+		
+	}
+	// 삭제 콜백
+	function deleteResult() {
+		let xmlDoc = this.responseXML;
+		//console.log
+		let code = xmlDoc.getElementsByTagName('code')[0].innerHTML;
+		if(code == 'success'){
+			// document.getElementById().remove();
+			let id = xmlDoc.getElementsByTagName('data')[0].children[0].innerHTML;
+			document.getElementById(id).remove();
+			window.alert('삭제완료');
+			
+			
+		} else if (code == 'error'){
+			alert('에러발생');
+		}
 	}
 </script>
 </head>

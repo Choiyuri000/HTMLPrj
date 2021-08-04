@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 @WebServlet("/CommentsServlet")
 public class CommentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +24,6 @@ public class CommentsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/xml;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
@@ -30,18 +32,16 @@ public class CommentsServlet extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 
 		if (cmd == null) {
-			StringBuffer sb = new StringBuffer();
-			sb.append("<result>");
-			sb.append("<code>error</code>");
-			sb.append("<data>");
-			sb.append("cmd null");
-			sb.append("</data>");
-			sb.append("</result>");
-			out.print(sb.toString());
+			out.println(errorXML("cmd null"));
+
+		} else if (cmd.equals("selectJson")) {
+			response.setContentType("text/json;charset=utf-8");
+			List<HashMap<String, Object>> list = CommentDAO.getInstance().selectAll();
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(list));
 
 		} else if (cmd.equals("selectAll")) { // 전체조회
 			try {
-
 				List<HashMap<String, Object>> list = CommentDAO.getInstance().selectAll();
 
 				StringBuffer sb = new StringBuffer();
@@ -78,13 +78,9 @@ public class CommentsServlet extends HttpServlet {
 				comment.setContent(content);
 				HashMap<String, Object> map = CommentDAO.getInstance().insert(comment);
 				out.println(dataXML(map));
+
 			} catch (Exception e) {
-				StringBuffer sb = new StringBuffer();
-				sb.append("<result>");
-				sb.append("<code>error</code>");
-				sb.append("<data>" + e.getMessage() + "</data>");
-				sb.append("</result>");
-				out.print(sb.toString());
+				out.print(errorXML(e.getMessage()));
 			}
 
 		} else if (cmd.equals("update")) {
@@ -97,8 +93,29 @@ public class CommentsServlet extends HttpServlet {
 			comment.setName(name);
 			comment.setContent(content);
 
-			HashMap<String, Object> map = new HashMap<String, Object>();
+			HashMap<String, Object> map = CommentDAO.getInstance().update(comment);
+
 			out.println(dataXML(map));
+
+		} else if (cmd.equals("delete")) {
+			String id = request.getParameter("id");
+			HashMap<String, Object> map = CommentDAO.getInstance().delete(id);
+			out.println(dataXML(map));
+
+		} else if (cmd.equals("insertJson")) {
+			response.setContentType("text/json;charset=utf-8");
+
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+			Comment comment = new Comment();
+			comment.setName(name);
+			comment.setContent(content);
+			HashMap<String, Object> map = CommentDAO.getInstance().insert(comment);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
+
+		} else if (cmd.equals("updateJson")) {
+			response.setContentType("text/json;charset=utf-8");
 
 		}
 	}

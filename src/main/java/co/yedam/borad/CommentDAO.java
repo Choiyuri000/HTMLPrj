@@ -65,8 +65,30 @@ public class CommentDAO extends DAO {
 		}
 		return null;
 	}
-	//글내용 수정
-	public HashMap<String, Object> update (Comment comment){
+
+	// 글 삭제 (매개값: 글번호)
+	public HashMap<String, Object> delete(String id) {
+		connect();
+		String sql = "delete from comments where id=?";
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			int r = pstmt.executeUpdate();
+			System.out.println("삭제됨:" + r);
+			return map;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+
+	// 글내용 수정
+	public HashMap<String, Object> update(Comment comment) {
 		connect();
 		String sql = "update comments set name=?, content=? where id=?";
 		try {
@@ -74,11 +96,12 @@ public class CommentDAO extends DAO {
 			pstmt.setString(1, comment.getName());
 			pstmt.setString(2, comment.getContent());
 			pstmt.setString(3, comment.getId());
-			rs = pstmt.executeQuery();
+			int r = pstmt.executeUpdate();
+
+			System.out.println("수정:" + r);
 			
-			List<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -86,13 +109,11 @@ public class CommentDAO extends DAO {
 			map.put("name", comment.getName());
 			map.put("content", comment.getContent());
 			return map;
-			
+
 		}
 		return null;
-	} 
+	}
 
-	
-	
 	// 글목록
 	public List<HashMap<String, Object>> selectAll() {
 		connect();
@@ -115,5 +136,4 @@ public class CommentDAO extends DAO {
 		return list;
 	}
 
-	
 }
