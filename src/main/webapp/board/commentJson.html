@@ -29,24 +29,30 @@
 		for (let i = 0; i < aryData.length; i++) {
 			let commentDiv = makeCommentView(aryData[i]);
 			$('#commentList').append(commentDiv);
-			
+
 		}
 	}
 	// 오브젝트 한 건 매개값으로 받아서 div 반환해주는 함수
 	function makeCommentView(comment) { // {id:?, name:?, content:?}
 		let div = $('<div />').attr('id', comment.id);
+		$(div).attr('data-id', comment.id)
+		$(div).attr('data-name', comment.name)
+		$(div).attr('data-content', comment.content)
 		let strong = $('<strong />').html(comment.name);
 		let span = $('<span />').html(comment.content);
-		let updateBtn = $('<input onclick="viewUpdateForm('+comment.id+')"/>').attr({
+		let updateBtn = $(
+				'<input onclick="viewUpdateForm(' + comment.id + ')"/>').attr({
 			'type' : 'button',
 			'value' : '수정',
-			
+
 		}); //
-		let deleteBtn = $('<input onclick="confirmDeletion('+comment.id+')"/>').attr({
-			'type' : 'button',
-			'value' : '삭제'
-		});
-		
+		let deleteBtn = $(
+				'<input onclick="confirmDeletion(' + comment.id + ')"/>').attr(
+				{
+					'type' : 'button',
+					'value' : '삭제'
+				});
+
 		$(div).append(strong, span, updateBtn, deleteBtn);
 		return div;
 	}
@@ -81,61 +87,49 @@
 	}
 	// 등록 콜백함수
 	function addResult(resolve) { // {id:?, name:?, content:?}
-		console.log(resolve);
-		let commentDiv= makeCommentView(resolve);
+
+		let commentDiv = makeCommentView(resolve);
 		$('#commentList').append(commentDiv);
-		document.addForm.name.value='';
-		document.addForm.content.value= '';
+		document.addForm.name.value = '';
+		document.addForm.content.value = '';
 		document.addForm.name.focus();
-		
-		
+
 	}
-	// 수정
+	// 수정 버튼 클릭시 (makeCommentView)
 	function viewUpdateForm(id) {
 		let updateFormDiv = document.getElementById('commentUpdate');
 		let commentDiv = document.getElementById(id);
-		updateForm.id.value = commentDiv.dataset.id;
-		updateForm.name.value = commentDiv.dataset.name;
-		updateForm.content.value = commentDiv.dataset.content;
+		updateForm.id.value = $(commentDiv).attr('data-id');
+		updateForm.name.value = $(commentDiv).attr('data-name');
+		updateForm.content.value = $(commentDiv).attr('data-content');
 		updateFormDiv.style.display = 'block';
 		commentDiv.after(updateFormDiv);
 		document.getElementById('commentAdd').style.display = 'none';
-		
-		
+
 	}
-	// 변경 사항 적용
+
+	// 변경 클릭시
 	function updateComment() {
-	let id = updateForm.id.value;
-	let name = updateForm.name.value;
-	let content = updateForm.content.value;
-	let url = '../CommentsServlet?cmd=updatee&id='  + id +'&name='+name+'&content=' +content;
-	let xhtp = new XMLHttpRequest();
-	xhtp.open('get', url);
-	xhtp.send();
-	xhtp.onload() = updateResult;
-	
-	
-	}
-	// 변경 사항 출력
-	function updateResult() {
-		let xmlDoc = this.responseXML();
-		let code = xmlDoc.getElementsByTagName('code')[0].innerHTML;
-		if (code == 'success'){
-			let comment = xmlDoc.getElementsByTagName('data');
-			let commentDiv = makeCommentView(comment);
-			let id = commentDiv.getAttribute('id');
-			let oldDiv = document.getElementById(id);
-			
-			let parent = document.getElementById('commentList');
-			parent.replaceChild(id, oldDiv);
-			documemt.getElementById('commentUpdate').style.dispaly = 'none';
-			document.getElementById('commentAdd').style.display = 'block';
-			
-		} else if (code == 'error'){
-			alert('에러발생');
-		}
+		let id = updateForm.id.value;
+		let name = updateForm.name.value;
+		let content = updateForm.content.value;
+		
+		let url = '../CommentsServlet?cmd=update&id=' + id + '&name=' + name
+		+ '&content=' + content;
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', url);
+		xhtp.send();
+		xhtp.onload = updateResult;
 	}
 	
+	
+	// 댓글 수정 콜백 함수
+
+	//취소 버튼
+
+	//삭제 버튼
+
+	//삭제 콜백 함수
 </script>
 </head>
 <body>
@@ -153,10 +147,11 @@
 	<!--댓글수정화면  -->
 	<div id="commentUpdate" style="display: none;">
 		<form name="updateForm" action="">
-			<input type="hidden" name="id"> 이름: <input type="text"
-				name="name" size="10"><br> 내용:
-			<textarea name="content" rows="3" cols="3"></textarea>
-			<br> <input type="button" value="변경" onclick="updateComment()">
+			<input type="hidden" name="id"> 
+			이름: <input type="text"name="name" size="10"><br> 
+			내용:<textarea name="content" rows="3" cols="3"></textarea>
+			<br> 
+			<input type="button" value="변경" onclick="updateComment()">
 			<input type="button" value="취소" onclick="cancelUpdate()">
 		</form>
 	</div>

@@ -94,7 +94,6 @@
 	function viewUpdateForm(id) {
 		let updateFormDiv = document.getElementById('commentUpdate');
 		let commentDiv = document.getElementById(id);
-		console.log(commentDiv);
 		updateForm.id.value = commentDiv.dataset.id;
 		updateForm.name.value = commentDiv.dataset.name;
 		updateForm.content.value = commentDiv.dataset.content;
@@ -154,9 +153,7 @@
 		xhtp.send();
 		xhtp.onload = updateResult;
 	}
-	function cancelResult() {
-		
-	}
+
 	// 삭제버튼
 	function confirmDelete() {
 		let url = '../CommentsServlet?cmd=delete&id=' + id;

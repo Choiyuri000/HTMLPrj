@@ -17,6 +17,22 @@ public class CommentDAO extends DAO {
 		return instance;
 	}
 
+	public HashMap<String, Integer> getAmtByCountry() {
+		connect();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		String sql = "select BillingCountry, sum(total) as amt from invoices i group by BillingCountry";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				map.put(rs.getString(1), rs.getInt(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+
 	// 글등록
 	public HashMap<String, Object> insert(Comment comment) {
 		// id_repository 테이블에서 현재 시퀀스번호
@@ -79,7 +95,6 @@ public class CommentDAO extends DAO {
 			return map;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
 
 		} finally {
 			disconnect();
@@ -99,8 +114,6 @@ public class CommentDAO extends DAO {
 			int r = pstmt.executeUpdate();
 
 			System.out.println("수정:" + r);
-			
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();

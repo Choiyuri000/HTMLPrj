@@ -40,7 +40,42 @@ public class CommentsServlet extends HttpServlet {
 			Gson gson = new GsonBuilder().create();
 			out.println(gson.toJson(list));
 
-		} else if (cmd.equals("selectAll")) { // 전체조회
+		} else if (cmd.equals("insertJson")) {
+			response.setContentType("text/json;charset=utf-8");
+
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+			Comment comment = new Comment();
+			comment.setName(name);
+			comment.setContent(content);
+			HashMap<String, Object> map = CommentDAO.getInstance().insert(comment);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
+
+		} else if (cmd.equals("updateJson")) {
+			response.setContentType("text/json;charset=utf-8");
+
+			String id = request.getParameter("id");
+			String name = request.getParameter("name");
+			String content = request.getParameter("content");
+			Comment comment = new Comment();
+			comment.setId(id);
+			comment.setName(name);
+			comment.setContent(content);
+			HashMap<String, Object> map = CommentDAO.getInstance().update(comment);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
+
+		} else if (cmd.equals("deleteJson")){
+			response.setContentType("text/json;charset=utf-8");
+			
+			String id = request.getParameter("id");
+			HashMap<String, Object> map = CommentDAO.getInstance().delete(id);
+			Gson gson = new GsonBuilder().create();
+			out.println(gson.toJson(map));
+
+	
+		}else if (cmd.equals("selectAll")) { // 전체조회
 			try {
 				List<HashMap<String, Object>> list = CommentDAO.getInstance().selectAll();
 
@@ -102,21 +137,6 @@ public class CommentsServlet extends HttpServlet {
 			HashMap<String, Object> map = CommentDAO.getInstance().delete(id);
 			out.println(dataXML(map));
 
-		} else if (cmd.equals("insertJson")) {
-			response.setContentType("text/json;charset=utf-8");
-
-			String name = request.getParameter("name");
-			String content = request.getParameter("content");
-			Comment comment = new Comment();
-			comment.setName(name);
-			comment.setContent(content);
-			HashMap<String, Object> map = CommentDAO.getInstance().insert(comment);
-			Gson gson = new GsonBuilder().create();
-			out.println(gson.toJson(map));
-
-		} else if (cmd.equals("updateJson")) {
-			response.setContentType("text/json;charset=utf-8");
-
 		}
 	}
 
@@ -130,7 +150,7 @@ public class CommentsServlet extends HttpServlet {
 		sb.append("<result>");
 		sb.append("<code>success</code>");
 		sb.append("<data>");
-		sb.append("<id>" + map.get("id") + "</id>");
+		//sb.append("<id>" + map.get("id") + "</id>");
 		sb.append("<name>" + map.get("name") + "</name>");
 		sb.append("<content>" + map.get("content") + "</content>");
 		sb.append("</data>");
