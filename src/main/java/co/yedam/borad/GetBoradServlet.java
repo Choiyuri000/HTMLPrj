@@ -28,7 +28,7 @@ public class GetBoradServlet extends HttpServlet {
 		response.setContentType("text/json;charset=utf-8");
 		List<HashMap<String, Object>> list = CommentDAO.getInstance().selectAll();
 		Gson gson = new GsonBuilder().create();
-		response.getWriter().print(gson.toJson(list));
+		//response.getWriter().print(gson.toJson(list));
 
 		JsonArray outAry = new JsonArray();
 		for (int i = 0; i < list.size(); i++) {
@@ -41,7 +41,7 @@ public class GetBoradServlet extends HttpServlet {
 			outAry.add(inAry);
 		}
 		JsonObject obj = new JsonObject();
-		obj.add("data", outAry);
+		obj.add("dataSet", outAry);
 		response.getWriter().print(gson.toJson(obj));;
 	}// {"data" : [[1번째], [2번째] ... [마지막]]
 

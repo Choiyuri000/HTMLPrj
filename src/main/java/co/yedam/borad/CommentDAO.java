@@ -50,6 +50,7 @@ public class CommentDAO extends DAO {
 			}
 			// 2) 시퀀스 1증가후 comment 입력
 			nextId++;
+			
 			pstmt = conn.prepareStatement("insert into comments values(?,?,?)");
 			pstmt.setInt(1, nextId);
 			pstmt.setString(2, comment.getName());

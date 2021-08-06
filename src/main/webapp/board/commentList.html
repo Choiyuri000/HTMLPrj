@@ -155,7 +155,7 @@
 	}
 
 	// 삭제버튼
-	function confirmDelete() {
+	function confirmDelete(id) {
 		let url = '../CommentsServlet?cmd=delete&id=' + id;
 		let xhtp = new XMLHttpRequest();
 		xhtp.open('get',url);
@@ -164,13 +164,15 @@
 		
 	}
 	// 삭제 콜백
-	function deleteResult() {
+	function deleteResult(id) {
 		let xmlDoc = this.responseXML;
-		//console.log
+		
 		let code = xmlDoc.getElementsByTagName('code')[0].innerHTML;
+		
 		if(code == 'success'){
 			// document.getElementById().remove();
 			let id = xmlDoc.getElementsByTagName('data')[0].children[0].innerHTML;
+			
 			document.getElementById(id).remove();
 			window.alert('삭제완료');
 			

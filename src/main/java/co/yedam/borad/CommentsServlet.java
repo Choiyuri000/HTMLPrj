@@ -150,7 +150,7 @@ public class CommentsServlet extends HttpServlet {
 		sb.append("<result>");
 		sb.append("<code>success</code>");
 		sb.append("<data>");
-		//sb.append("<id>" + map.get("id") + "</id>");
+		sb.append("<id>" + map.get("id") + "</id>");
 		sb.append("<name>" + map.get("name") + "</name>");
 		sb.append("<content>" + map.get("content") + "</content>");
 		sb.append("</data>");

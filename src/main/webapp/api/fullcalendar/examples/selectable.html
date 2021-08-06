@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset='utf-8' />
+<link href='../lib/main.css' rel='stylesheet' />
+<script src='../lib/main.js'></script>
+<script>
+	// 달력
+	let dbData = [ {
+		title : 'sample event',
+		start : '2021-09-05'
+	}, {
+		title : '???',
+		start : '???',
+		end : '???'
+	} ]; // 서블릿을 이용해서 데이터 가져오도록 1. 조회기능, 2.입력기능, 3.삭제기능
+	document.addEventListener('DOMContentLoaded', function() {
+		var calendarEl = document.getElementById('calendar');
+
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			headerToolbar : {
+				left : 'prev,next today',
+				center : 'title',
+				right : 'dayGridMonth,timeGridWeek,timeGridDay'
+			},
+			initialDate : '2021-09-12',
+			navLinks : true, // can click day/week names to navigate views
+			selectable : true,
+			selectMirror : true,
+			select : function(arg) {
+				var title = prompt('Event Title:');
+				if (title) {
+					console.log(arg)
+					calendar.addEvent({
+						title : title,
+						start : arg.start,
+						end : arg.end,
+						allDay : arg.allDay
+					})
+				}
+				calendar.unselect()
+			},
+			eventClick : function(arg) {
+				console.log(arg)
+				if (confirm('Are you sure you want to delete this event?')) {
+					arg.event.remove()
+				}
+			},
+			editable : true,
+			dayMaxEvents : true, // allow "more" link when too many events
+			events : dbData
+		});
+
+		calendar.render();
+	});
+</script>
+<script>
+	window.onload = function() {
+		loadCalendar();
+	}
+	//조회
+	function loadCalendar() {
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', '../../../CalendarServlet?cmd=selectAll');
+		xhtp.send();
+		xhtp.onload = loadCalendarResult;
+
+	}
+
+	function loadCalendarResult() {
+		let xmlDoc = this.responseXML;
+		console.log(xmlDoc);
+		let code = xmlDoc.getElementsByTagName('code')[0].innerHTML;
+		console.log(code);
+
+		if (code == 'success') {
+			let code = xmlDoc.getElementsByTagName('row');
+			console.log(code);
+			let cal = document.getElementById('calendar');// 데이터 출력이 없다
+			console.log(cal);
+			for (let i = 0; i < calendar.length; i++) {
+				let calendarDiv = makeCalendarView(calendar[i]);
+				listDiv.appendChild(calendarDiv);
+			}
+		} else if (code == 'error') {
+			let msg = xmlDoc.getElementsByTagName('data')[0].innerHTML;
+			window.alert(msg);
+		}
+	}
+
+	function makeCalendarView(calendar) {
+		let div = document.createElement('div');
+		let title = calendar.children[0].innerHTML;
+		let start = calendar.children[1].innerHTML;
+		let end = calendar.children[2].innerHTML;
+		div.setAttribute('title', title);
+		div.setAttribute('date-title', title);
+		div.setAttribute('data-start', start);
+		div.setAttribute('data-end', end);
+		return div;
+	}
+	//입력
+	function addEvent() {
+		let title = document.calendar.title.value;
+		let start = document.calendar.start.value;
+		let end = document.canlendar.end.value;
+		if (title == "") {
+			alert('제목을 입력하세요');
+			document.calendar.title.focus();
+			return
+
+			
+
+		}
+		let url = '../CalendarServlet?cmd=insert&title=' + title;
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', url);
+		xhtp.send();
+		xhtp.onload = addResult;
+	}
+	function addResult() {
+		let xmlDoc = this.responseXML;
+		let code = xmlDoc.getElementsByTagName('code')[0].innerHTML;
+		if (code == 'success') {
+			let listDiv = document.getElementById('calendar');
+			let cal = xmlDoc.getElementsByTagName('data')[0];
+			let calDiv = makeCalendarView(calender);
+			listDiv.appendChild(calDiv);
+		} else if (code == 'error') {
+			alert('일정을 추가해주세요.');
+		}
+	}
+	//삭제
+	function confirmDelete(title) {
+		let url = '../CalendarServlet?cmd=delete&title=' + title;
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', url);
+		xhtp.send();
+		xhtp.onload = deleteResult;
+	}
+	function deleteResult(title) {
+		let xmlDoc = this.responseXML;
+		let code = xmlDoc.getElementsByTagName('code')[0].innerHTML;
+		if (code == 'success') {
+			let title = xmlDoc.getElementsByTagName('data')[0].children[0].innerHTML;
+			document.getElementById(title).remove();
+			window.alert('삭제 완료.');
+		} else if (code == 'error') {
+			alert('에러발생');
+		}
+	}
+</script>
+<style>
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+</style>
+</head>
+
+<body>
+	<div id='calendarList'></div>
+	<div id='calendar'></div>
+
+</body>
+
+</html>
