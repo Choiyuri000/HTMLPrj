@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>xml</title>
+<script>
+</script>
+</head>
+<body>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			loadCommentList();
+		});
+
+		function loadCommentList() {
+			$.ajax({
+				url: 'members.json',
+		
+				success: function (result) {
+					let aryData = result;
+					for (let i = 0; i < aryData.length; i++) {
+						let tr = $('<tr />');
+						for (let field in aryData[0]) {
+
+							let th = $('<th />').html(aryData[i][field]);
+							$(tr).append(th);
+						}
+						$('#slist').append(tr);
+					}
+				}
+			});
+		}
+        </script>
+</body>
+</html>

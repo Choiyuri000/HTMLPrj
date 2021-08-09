@@ -30,6 +30,10 @@ public class CalendarServlet extends HttpServlet {
 
 		if (cmd == null) {
 			out.println(errorXML("cmd null"));
+		//JSON	
+			
+			
+		// XML	
 		} else if (cmd.equals("selectAll")) { // 조회
 			try {
 				List<HashMap<String, Object>> list = CalendarDAO.getInstance().selectAll();

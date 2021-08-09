@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Shop Homepage - Start Bootstrap Template</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="#!">Start Bootstrap</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#!">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="#!">All Products</a></li>
+							<li>
+								<hr class="dropdown-divider" />
+							</li>
+							<li><a class="dropdown-item" href="#!">Popular Items</a></li>
+							<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+						</ul></li>
+				</ul>
+				<form class="d-flex">
+					<button class="btn btn-outline-dark" type="submit">
+						<i class="bi-cart-fill me-1"></i> Cart <span
+							class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Shop in style</h1>
+				<p class="lead fw-normal text-white-50 mb-0">With this shop
+					hompeage template</p>
+			</div>
+		</div>
+	</header>
+	<!-- Section-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 mt-5">
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			</div>
+		</div>
+	</section>
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2021</p>
+		</div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+	<script>
+		function makeRowData(obj) { // {obj.itemNo, obj.itemName ...}
+			let div_col = $('<div />').addClass('col mb-5');
+			let div_card = $('<div />').addClass('card h-100');
+			// div_card 하위요소
+			let div_badge = $('<div />').addClass(
+					'badge bg-dark text-white position-absolute').css('top',
+					'0.5rem').css('right', '0.5rem').html('Sale');
+			let img = $('<img />').addClass('card-img-top').attr('src',
+					'../image/' + obj.image);
+			let div_cardbody = $('<div />').addClass('card-body p-4');//
+			// 하위추가
+			let div_text = $('<div />').addClass('text-center');
+			let h5 = $('<h5 />').addClass('fw-bolder').html(
+					$('<a />').attr('href',
+							'item.datail.jsp?item_no=' + obj.itemNo).html(
+							obj.itemName));
+			let div_dflex = $('<div />').addClass(
+					'd-flex justify-content-center small text-warning mb-2');
+			// 세부하위추가
+			let likeIt = Math.likeIt(obj.likeIt); // .5 => 
+			let halfIt = obj.likeIt - Math.floor(likeIt);
+
+			// bi-star-fill -> 갯수
+			for (let i = 0; i < likeIt; i++) {
+				let div_bistarfill = $('<div />').addClass('bi-star-fill');
+				$(div_dflex).append(div_bistarfill);
+			}
+			// bi-star-half
+			if (halfIt) {
+				let divstarhalf = $('<div />').addClass('bi-star-half');
+				$(div_dlflex).append(div_bistarhalf);
+			}
+			let price = new Intl.NumberFormat('ko-KR', {
+				style : 'currency',
+				currency : 'KRW'
+			}).format(obj.price);
+			let priceOff = new Intl.NumberFormat('ko-KR', {
+				style : 'currency',
+				currency : 'KRW'
+			}).format(obj.priceOff);
+
+			let span_text = $('<span />').addClass(
+					'text-muted text-decoration-line-through').html(obj.price);
+			let span_text2 = $('<span />').html('' + priceOff);
+
+			let div_cardfooter = $('<div />').addClass(
+					'card-footer p-4 pt-0 border-top-0 bg-transparent');//
+			let div_btn = $('<div />').addClass('text-center');
+			let a = $('<a />').addClass('btn btn-outline-dark mt-auto').attr(
+					'href', '#').html('Add to cart');
+			a.on('click', addCartFunc())
+
+			$(div_cardfooter).append(div_btn);
+			$(div_btn).append(a);
+
+			$(div_cardbody).append(div_text);
+			$(div_text).append(h5, div_dflex, span_text);
+
+			$(div_col).append(div_card);
+			$(div_card).append(div_badge, img, div_cardbody, div_cardfooter); // badg, img, cardbody, cardfooter
+
+			$('.row').append(div_col);
+		}// 
+		function addCartFunc(e) {
+			e.preventDefault();
+			// cart count
+			let cnt = $('form button').children().eq(1).html();
+			cnt = parseInt(cnt);
+			//console.log(++cnt);
+			$('form button').eq(1).html(++cnt);
+
+		}
+		makeRowData();
+		// 파일 읽어오는 ajax.
+		$.ajax({
+			url : '..//GetItemListServlet',
+			dataType : 'json',
+			success : function(result) {
+				console.log(result);
+				for (let i = 0; i < result.length; i++) {
+					makeRowData(result[i]);
+				}
+			},
+			error : function() {
+
+			}
+		});
+	</script>
+</body>
+
+</html>
